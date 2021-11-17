@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:FitnessApp.Helpers"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="FitnessApp.Views.ChallengesPage"
+             BackgroundColor="{StaticResource Background}"
+             android:TabbedPage.ToolbarPlacement="Top"
+             Shell.NavBarIsVisible="False"
+             >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="CategoryIcon" TargetType="Label">
+                <Setter Property="FontFamily" Value="FAsolid"/>
+                <Setter Property="FontSize" Value="28"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}"/>
+            </Style>
+
+            <Style x:Key="CategoryLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="Small"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="TextColor" Value="{StaticResource TextPrimary}"/>
+
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="Auto,.9*,Auto"
+       Padding="0,0,0,12"
+          >
+
+        <Grid
+            Margin="{OnPlatform Android='0,0,0,0'}"
+            Padding="16,16,16,0"
+            ColumnDefinitions="*,*,*"
+            BackgroundColor="{StaticResource CardBackground}"
+            RowDefinitions="Auto,Auto">
+            
+            <Label 
+                   Grid.Row="0"
+                   Style="{StaticResource CategoryIcon}"
+                   Grid.Column="0"
+                  TextColor="{StaticResource ButtonOutline}"
+                   Text="{x:Static helpers:FAIcons.Trophy}"
+                   />
+            <Label Text="Active" 
+                     Grid.Row="1"
+                   Style="{StaticResource CategoryLabel}"/>
+
+           
+            <Label Text="Upcoming"
+                    Grid.Row="1"  Grid.Column="1"
+                   Style="{StaticResource CategoryLabel}"/>
+            <Label 
+                   Grid.Row="0"
+                   Grid.Column="1"
+                    Style="{StaticResource CategoryIcon}"
+                  TextColor="{StaticResource ButtonOutline}"
+                   Text="{x:Static helpers:FAIcons.AngleDoubleUp}"
+                   />
+            <Label Text="Complete" 
+                     Grid.Row="1"
+                    Grid.Column="2"
+                   Style="{StaticResource CategoryLabel}"/>
+
+            <Label Style="{StaticResource CategoryIcon}"
+                   Grid.Row="0"
+                   Grid.Column="2"
+                   TextColor="{StaticResource ButtonOutline}"
+                   Text="{x:Static helpers:FAIcons.Medal}"
+                   />
+        </Grid>
+
+
+        <CarouselView 
+            
+                      PeekAreaInsets="20"
+                      Grid.Row="1"
+                      Loop="False"
+                      IndicatorView="indicatorView">
+            <CarouselView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal"
+                                    ItemSpacing="5" 
+                                    SnapPointsType="Mandatory"
+                                    SnapPointsAlignment="Center"/>
+            </CarouselView.ItemsLayout>
+            <CarouselView.ItemsSource>
+
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Item One</x:String>
+                    <x:String>Item Two</x:String>
+                    <x:String>Item Three</x:String>
+                    <x:String>Item Three</x:String>
+                    <x:String>Item Three</x:String>
+                   
+                </x:Array>
+            </CarouselView.ItemsSource>
+
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="0,0,0,8" >
+
+
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="CurrentItem">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                                                Value="1.0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="PreviousItem">
+                                    <VisualState.Setters>
+                                        <Setter Property="Scale"
+                                                Value=".95" />
+                                    </VisualState.Setters>
+                                </VisualState>
+								<VisualState x:Name="NextItem">
+									<VisualState.Setters>
+                                        <Setter Property="Scale"
+										        Value=".95" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="DefaultItem">
+									<VisualState.Setters>
+                                        <Setter Property="Scale"
+										        Value=".95" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+
+                        <Frame WidthRequest="320"  
+                                   HasShadow="True"
+                                   CornerRadius="8"
+                                   BackgroundColor="{StaticResource CardBackground}">
+
+                            <Frame.Background>
+                                <LinearGradientBrush StartPoint="0,0"
+                                                     EndPoint="1,1">
+                                    <GradientStop Color="#8A2387"
+                                                     Offset="0.1"/>
+                                    <GradientStop Color="#E94057"
+                                                     Offset="0.6"/>
+                                    <GradientStop Color="#F27121"
+                                                     Offset="1.0"/>
+                                </LinearGradientBrush>
+                            </Frame.Background>
+                            <!--0Icon, 
+                            1 Active,
+                            2 Name and Decrpt
+                            3 joined and paticipants
+                            4 Progress-->
+
+                            <Grid RowDefinitions="Auto,Auto,*,*,Auto" RowSpacing="16"
+                                  Padding="0,26,0,0">
+                                <Frame HeightRequest="100"
+                                       WidthRequest="100"
+                                      CornerRadius="50"
+                                       Padding="0"
+                                       HorizontalOptions="Center">
+
+                                    <Label Text="{x:Static helpers:FAIcons.Award}" 
+                                       FontSize="60"
+                                       HorizontalOptions="Center"
+                                       TextColor="{StaticResource TextMain}"
+                                       VerticalOptions="Center"
+                                       FontFamily="FAsolid"/>
+                                </Frame>
+
+                                <Frame Grid.Row="1" BackgroundColor="{StaticResource TextPrimary}"
+                                       HorizontalOptions="Center" 
+                                       HasShadow="False" Padding="12,7">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label TextColor="White" Text="Active" FontSize="Micro"/>
+                                        <Label TextColor="White" Text="-" FontSize="Micro"/>
+                                        <Label TextColor="White" Text="14 DAYS LEFT" FontSize="Micro"/>
+                                    </StackLayout>
+                                </Frame>
+
+                                <StackLayout Grid.Row="2" VerticalOptions="Center">
+                                    <Label  Text="The Anual"
+                                       HorizontalOptions="Center" TextColor="White"
+                                       FontSize="20"/>
+
+                                    <Label Grid.Row="3" Text="Build habit for success"
+                                       HorizontalOptions="Center" TextColor="White"
+                                       FontSize="18"
+                                         />
+                                </StackLayout>
+                                <StackLayout Grid.Row="3" HorizontalOptions="Center"
+                                             Spacing="4" Orientation="Horizontal" 
+                                             VerticalOptions="Center">
+                                    <Label Text="{x:Static helpers:FAIcons.Check}" 
+                                           FontFamily="FAsolid"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           FontSize="Micro"/>
+                                    <Label Text="Joined" TextColor="White"/>
+                                    <Label Text="{x:Static helpers:FAIcons.Users}" 
+                                           Margin="12,0,0,0"
+                                           FontFamily="FAsolid"
+                                           TextColor="White"
+                                           VerticalOptions="Center"
+                                           FontSize="Micro"/>
+                                    <Label Text="1,124,492 partcipants" 
+                                           VerticalOptions="Center"
+                                           TextColor="White"
+                                           FontSize="Micro"/>
+                                </StackLayout>
+
+                                <Frame         Grid.Row="4"
+                                               Padding="12"
+                                               Margin="12,0,12,12"
+                                               HasShadow="False">
+                                    <Grid    ColumnSpacing="10"  
+                                             ColumnDefinitions="Auto,*,Auto">
+                                        
+                                        <Frame HeightRequest="50"
+                                               WidthRequest="50"
+                                               CornerRadius="25"
+                                               Padding="0"
+                                               VerticalOptions="End"
+                                               HorizontalOptions="Center"
+                                               BorderColor="{StaticResource TextMain}"
+                                               HasShadow="False">
+
+                                            <Label Text="{x:Static helpers:FAIcons.ThumbsUp}" 
+                                                   FontSize="24"
+                                                   HorizontalOptions="Center"
+                                                   TextColor="{StaticResource TextMain}"
+                                                   VerticalOptions="Center"
+                                                   FontFamily="FAsolid"/>   
+                                        </Frame>
+
+                                        <StackLayout Grid.Column="1" 
+                                                     VerticalOptions="Center"
+                                                     Spacing="2">
+                                            <Label Text="Unearned" 
+                                                   FontSize="Small"
+                                                   TextColor="{StaticResource TextMain}"/>
+                                            <Label Text="616min to 1k"
+                                                   FontSize="Micro"
+                                                   TextColor="{StaticResource TextPrimary}"/>
+                                            <ProgressBar Progress=".5" HeightRequest="5" Margin="0,4,0,0" /> 
+
+                                        </StackLayout>
+                                         
+
+                                        <Frame HeightRequest="30"
+                                               WidthRequest="30"
+                                               CornerRadius="15"
+                                               Padding="0"
+                                               Grid.Column="2"
+                                               VerticalOptions="End"
+                                               HorizontalOptions="Center"
+                                               BorderColor="{StaticResource TextMain}"
+                                               HasShadow="False">
+
+                                            <Label Text="{x:Static helpers:FAIcons.ThumbsUp}" 
+                                                   FontSize="14"
+                                                   HorizontalOptions="Center"
+                                                   TextColor="{StaticResource TextMain}"
+                                                   VerticalOptions="Center"
+                                                   FontFamily="FAsolid"/>
+                                        </Frame>
+
+                                    </Grid>
+                                    
+                                </Frame>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+
+        <IndicatorView x:Name="indicatorView"
+                       IndicatorColor="AliceBlue"
+                       SelectedIndicatorColor="{StaticResource ButtonOutline}"
+                       HorizontalOptions="Center"
+                        Grid.Row="2"
+                       IndicatorSize="10"
+                        />
+    </Grid>
+</ContentPage>

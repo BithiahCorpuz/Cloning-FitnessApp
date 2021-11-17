@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:FitnessApp.Views"
+       xmlns:helpers="clr-namespace:FitnessApp.Helpers"
+       Title="FitnessApp"
+       x:Class="FitnessApp.AppShell">
+
+    <!--
+        The overall app visual hierarchy is defined here, along with navigation.
+    
+        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    -->
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Background}" />
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource Background}" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource TabSelected}" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="{StaticResource TabUnSelected}" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource TabBarBackground}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="{StaticResource TabSelected}"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource TabUnSelected}"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource TabSelected}"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar>
+       
+        <Tab  Title="Featured" 
+              Route="FeaturePage"
+              Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAsolid"
+                                 Glyph="{x:Static helpers:FAIcons.Star}"/>
+            </Tab.Icon>
+            <ShellContent
+                      Route="FeaturePage"
+                      ContentTemplate="{DataTemplate local:FeaturePage}" >
+            </ShellContent>
+       
+        </Tab>
+
+        <Tab  Title="Challenges" 
+              Route="ChallengePage"
+              Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAsolid"
+                                 Glyph="{x:Static helpers:FAIcons.Trophy}"/>
+            </Tab.Icon>
+            <ShellContent
+                      Title="Active"
+                      ContentTemplate="{DataTemplate local:ChallengesPage}">
+            </ShellContent>
+        </Tab>
+
+
+        <Tab  Title="Classes" 
+              Route="ClassesPage"
+              Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAsolid"
+                                 Glyph="{x:Static helpers:FAIcons.Book}"/>
+            </Tab.Icon>
+            <ShellContent
+                      Route="FeaturePage"
+                      ContentTemplate="{DataTemplate local:ClassesPage}" >
+            </ShellContent>
+        </Tab>
+
+        <Tab  Title="ProfilePage" 
+              Route="ProfilePage"
+              Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAsolid"
+                                 Glyph="{x:Static helpers:FAIcons.User}"/>
+            </Tab.Icon>
+            <ShellContent
+                      Route="FeaturePage"
+                      ContentTemplate="{DataTemplate local:ProfilePage}" >
+            </ShellContent>
+        </Tab>
+
+        <Tab  Title="More" 
+              Route="MorePage"
+              Shell.NavBarIsVisible="False">
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAsolid"
+                                 Glyph="{x:Static helpers:FAIcons.GripLines}"/>
+            </Tab.Icon>
+            <ShellContent
+                      Route="FeaturePage"
+                      ContentTemplate="{DataTemplate local:MorePage}" >
+            </ShellContent>
+        </Tab>
+
+    </TabBar>
+
+    <!--
+        If you would like to navigate to this content you can do so by calling
+        await Shell.Current.GoToAsync("//LoginPage");
+    -->
+    <TabBar>
+    </TabBar>
+
+
+</Shell>
